@@ -5,8 +5,8 @@ object DMPrincipal: TDMPrincipal
   object conFBConecao: TFDConnection
     Params.Strings = (
       
-        'Database=C:\Users\guilh\OneDrive\Documentos\SistemaEmpresa\Banco' +
-        ' de dado\NOVOBANCO.FDB'
+        'Database=C:\Users\guilh\OneDrive\'#193'rea de Trabalho\Banco de dado\' +
+        'NOVOBANCO.FDB'
       'User_Name=SYSDBA'
       'Password=masterkey'
       'DriverID=FB')
@@ -30,6 +30,7 @@ object DMPrincipal: TDMPrincipal
     Top = 152
   end
   object fdqryBancoPrincipal: TFDQuery
+    Active = True
     Connection = conFBConecao
     SQL.Strings = (
       'select * From cliente')
@@ -127,6 +128,7 @@ object DMPrincipal: TDMPrincipal
     Connection = conFBConecao
     CommandText.Strings = (
       'Select * From cliente')
+    Active = True
     Left = 40
     Top = 96
   end
