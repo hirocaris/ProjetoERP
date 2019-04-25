@@ -24,7 +24,7 @@ uses
   dxLayoutContainer, dxLayoutControl, cxStyles, cxCustomData, cxFilter, cxData,
   cxDataStorage, cxEdit, cxNavigator, Data.DB, cxDBData, cxGridLevel,
   cxGridCustomView, cxGridCustomTableView, cxGridTableView, cxGridDBTableView,
-  cxGrid,uDMPrincipal,uconexaoBancoCLiente,uCadastroCliente;
+  cxGrid,uDMPrincipal,uconexaoBancoCLiente;
 
 type
   TFRMCliente = class(TForm)
@@ -52,7 +52,6 @@ type
     cxgrdbclmnGrid1DBTableView1Column14: TcxGridDBColumn;
     cxgrdbclmnGrid1DBTableView1Column15: TcxGridDBColumn;
     procedure FormCreate(Sender: TObject);
-    procedure Cadastrar1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -65,15 +64,6 @@ var
 implementation
 
 {$R *.dfm}
-
-procedure TFRMCliente.Cadastrar1Click(Sender: TObject);
-var
-CadastroCliente :TFRMCadaStroCliente;
-begin
-CadastroCliente := TFRMCadaStroCliente.Create(Self);
-CadastroCliente.ShowModal;
-
-end;
 
 procedure TFRMCliente.FormCreate(Sender: TObject);
 var

@@ -23,6 +23,7 @@ object FRMCliente: TFRMCliente
     Height = 237
     Align = alClient
     TabOrder = 0
+    ExplicitHeight = 240
     object cxgrdespesaGrid1DBTableView1: TcxGridDBTableView
       Navigator.Buttons.CustomButtons = <>
       DataController.DataSource = DMPrincipal.ds1
@@ -96,13 +97,12 @@ object FRMCliente: TFRMCliente
     end
   end
   object mm1: TMainMenu
-    Left = 560
-    Top = 112
+    Left = 512
+    Top = 65528
     object Clie1: TMenuItem
       Caption = 'Clieente'
       object Cadastrar1: TMenuItem
         Caption = 'Cadastrar'
-        OnClick = Cadastrar1Click
       end
     end
   end
