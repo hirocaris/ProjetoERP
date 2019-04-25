@@ -13,6 +13,7 @@ object FRMCliente: TFRMCliente
   Menu = mm1
   OldCreateOrder = False
   WindowState = wsMaximized
+  OnClose = FormClose
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13

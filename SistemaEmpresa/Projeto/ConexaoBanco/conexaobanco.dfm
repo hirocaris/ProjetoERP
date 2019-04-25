@@ -1,51 +1,46 @@
-object DMPrincipal: TDMPrincipal
+object DataModule1: TDataModule1
   OldCreateOrder = False
-  Height = 348
-  Width = 611
-  object conFBConecao: TFDConnection
+  Height = 262
+  Width = 362
+  object con1: TFDConnection
     Params.Strings = (
-      
-        'Database=C:\Users\guilh\OneDrive\Documentos\ProjetoERP\SistemaEm' +
-        'presa\Banco de dado\NOVOBANCO.FDB'
       'User_Name=SYSDBA'
+      
+        'Database=C:\Users\guilh\OneDrive\Documentos\SistemaEmpresa\Banco' +
+        ' de dado\NOVOBANCO.FDB'
       'Password=masterkey'
+      'CharacterSet=WIN1252'
       'DriverID=FB')
     Connected = True
+    Transaction = fdtrnsctn1
     UpdateTransaction = fdtrnsctn1
-    Left = 48
+    Left = 40
+    Top = 16
+  end
+  object fdcmnd1: TFDCommand
+    Connection = con1
+    CommandText.Strings = (
+      'select * from cliente')
+    Left = 112
     Top = 16
   end
   object fdphysfbdrvrlnk1: TFDPhysFBDriverLink
-    Left = 56
-    Top = 160
+    Left = 216
+    Top = 16
   end
   object fdtrnsctn1: TFDTransaction
-    Connection = conFBConecao
-    Left = 56
-    Top = 280
+    Connection = con1
+    Left = 256
+    Top = 88
   end
-  object ds1: TDataSource
-    DataSet = fdtblCliente
-    Left = 144
-    Top = 24
-  end
-  object fdqryBancoPrincipal: TFDQuery
-    Connection = conFBConecao
-    SQL.Strings = (
-      'select * From cliente')
-    Left = 48
-    Top = 224
-  end
-  object fdtblCliente: TFDTable
-    Active = True
+  object fdtbl1: TFDTable
     IndexFieldNames = 'CLI_ID'
-    Connection = conFBConecao
+    Connection = con1
     Transaction = fdtrnsctn1
-    UpdateTransaction = fdtrnsctn1
     UpdateOptions.UpdateTableName = 'CLIENTE'
     TableName = 'CLIENTE'
-    Left = 224
-    Top = 24
+    Left = 184
+    Top = 160
     object intgrfldfdtbl1CLI_ID: TIntegerField
       FieldName = 'CLI_ID'
       Origin = 'CLI_ID'
@@ -107,32 +102,13 @@ object DMPrincipal: TDMPrincipal
       Origin = 'CLI_CEP'
       Size = 60
     end
-    object strngfldfdtbl1CLI_TELEFONE: TStringField
-      FieldName = 'CLI_TELEFONE'
-      Origin = 'CLI_TELEFONE'
-      Size = 60
-    end
-    object strngfldfdtbl1CLI_EMAIL: TStringField
-      FieldName = 'CLI_EMAIL'
-      Origin = 'CLI_EMAIL'
-      Size = 60
-    end
-    object strngfldfdtbl1CLI_TELEFONE2: TStringField
-      FieldName = 'CLI_TELEFONE2'
-      Origin = 'CLI_TELEFONE2'
-      Size = 60
-    end
-    object intgrfldClientemax: TIntegerField
-      FieldKind = fkCalculated
-      FieldName = 'max'
-      Calculated = True
-    end
   end
-  object fdcmnd1: TFDCommand
-    Connection = conFBConecao
-    CommandText.Strings = (
-      'Select * From cliente')
-    Left = 40
-    Top = 96
+  object fdqrySQL: TFDQuery
+    Connection = con1
+    Transaction = fdtrnsctn1
+    SQL.Strings = (
+      'select *from cliente')
+    Left = 112
+    Top = 160
   end
 end

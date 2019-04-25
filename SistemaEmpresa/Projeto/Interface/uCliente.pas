@@ -53,10 +53,12 @@ type
     cxgrdbclmnGrid1DBTableView1Column15: TcxGridDBColumn;
     procedure FormCreate(Sender: TObject);
     procedure Cadastrar1Click(Sender: TObject);
+    procedure Conexao;
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
-    { Public declarations }
+   ConexaoBancoPrincipal : TDMPrincipal
   end;
 
 var
@@ -72,14 +74,23 @@ CadastroCliente :TFRMCadaStroCliente;
 begin
 CadastroCliente := TFRMCadaStroCliente.Create(Self);
 CadastroCliente.ShowModal;
+Conexao;
 
 end;
 
-procedure TFRMCliente.FormCreate(Sender: TObject);
-var
-ConexaoBancoPrincipal : TDMPrincipal;
+procedure TFRMCliente.Conexao;
 begin
 ConexaoBancoPrincipal := TDMPrincipal.Create(Self);
 end;
 
+procedure TFRMCliente.FormClose(Sender: TObject; var Action: TCloseAction);
+
+begin
+ConexaoBancoPrincipal.Free
+end;
+
+procedure TFRMCliente.FormCreate(Sender: TObject);
+begin
+Conexao
+end;
 end.
