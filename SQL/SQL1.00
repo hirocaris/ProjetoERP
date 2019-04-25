@@ -1,0 +1,17 @@
+CREATE TABLE CLIENTE (
+    CLI_ID            INTEGER NOT NULL,
+    CLI_NOME          VARCHAR(100),
+    CLI_NOMEFANTASIA  VARCHAR(100),
+    CLI_CPF           VARCHAR(60),
+    CLIE_CNPJ         VARCHAR(60),
+    CLI_PAIS          VARCHAR(100),
+    CLI_ESTADO        VARCHAR(100),
+    CLI_CIDADE        VARCHAR(100),
+    CLI_BAIRRO        VARCHAR(100),
+    CLI_RUA           VARCHAR(100),
+    CLI_NUMERO        VARCHAR(60),
+    CLI_CEP           VARCHAR(60),
+    CLI_TELEFONE      VARCHAR(60),
+    CLI_EMAIL         VARCHAR(60),
+    CLI_TELEFONE2     VARCHAR(60)
+);
