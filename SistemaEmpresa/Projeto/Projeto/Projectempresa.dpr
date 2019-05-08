@@ -7,7 +7,7 @@ uses
   uCadastroCliente in '..\Interface\uCadastroCliente.pas' {FRMCadaStroCliente},
   uDMPrincipal in '..\Banco\uDMPrincipal.pas' {DMPrincipal: TDataModule},
   uconexaoBancoCLiente in '..\Classe\uconexaoBancoCLiente.pas',
-  uSQLSItemaCLiente in 'uSQLSItemaCLiente.pas';
+  uSQLSItemaCLiente in '..\Classe\SQLSIstema\uSQLSItemaCLiente.pas';
 
 {$R *.res}
 

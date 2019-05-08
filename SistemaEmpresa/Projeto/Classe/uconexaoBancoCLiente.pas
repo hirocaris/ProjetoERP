@@ -6,6 +6,7 @@ UBancoCliente,uSQLSItemaCLiente;
 type
 TconexaoBancoCliente = class
   public
+    Fid: Integer;
     FNome: string;
     FNomeFantasia: string;
     FCPF: string;
@@ -20,9 +21,12 @@ TconexaoBancoCliente = class
     Ftelefone: string;
     Ftelefone2: string;
     Femail: string;
+    Foperacao : Boolean;
+
 
 
   procedure Conectar;
+  function Pesquisar(Nome : string; Rg : Integer): string;
 end;
 
 implementation
@@ -34,7 +38,9 @@ var
 ConexaoCliente : TClientebanco;
 begin
 ConexaoCliente :=TClientebanco.Create;
-ConexaoCliente.insertCliente( FNome,
+if Foperacao = False then
+begin
+ ConexaoCliente.insertCliente( FNome,
     FNomeFantasia,
     FCPF,
     FCNPJ,
@@ -48,6 +54,35 @@ ConexaoCliente.insertCliente( FNome,
     Ftelefone2,
     Femail);
 
+end;
+if Foperacao = true then
+begin
+  ConexaoCliente.modificarcadastro( FNome,
+    FNomeFantasia,
+    FCPF,
+    FCNPJ,
+    Fpais,
+    Festado,
+    Fcidade,
+    Fbairro,
+    Frua,    Fnumero,
+    Fcep,
+    Ftelefone,
+    Ftelefone2,
+    Femail,
+    Fid);
+
+end;
+
+end;
+
+function TconexaoBancoCliente.Pesquisar(Nome : string; Rg : Integer): String;
+var
+ConexaoCliente : TClientebanco;
+begin
+ConexaoCliente :=TClientebanco.Create;
+
+Result := ConexaoCliente.pesquisa(Nome,Rg);
 end;
 
 end.

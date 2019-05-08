@@ -21,15 +21,12 @@ object FRMPrincipal: TFRMPrincipal
     Height = 300
     Align = alClient
     TabOrder = 0
-    ExplicitLeft = 64
-    ExplicitTop = 24
-    ExplicitWidth = 300
-    ExplicitHeight = 250
     object btn1: TSpeedButton
       Left = 22
       Top = 28
       Width = 59
       Height = 61
+      Caption = 'Cliente'
       OnClick = btn1Click
     end
     object dxlybotaoLayoutControl1Group_Root: TdxLayoutGroup

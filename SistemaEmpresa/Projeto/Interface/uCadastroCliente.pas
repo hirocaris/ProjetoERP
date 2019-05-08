@@ -21,7 +21,7 @@ uses
   dxSkinVisualStudio2013Blue, dxSkinVisualStudio2013Dark,
   dxSkinVisualStudio2013Light, dxSkinVS2010, dxSkinWhiteprint,
   dxSkinXmas2008Blue, dxSkinscxPCPainter, dxLayoutContainer, Vcl.StdCtrls,
-  cxClasses, dxLayoutControl, Vcl.ExtCtrls, Vcl.Buttons,uconexaoBancoCLiente;
+  cxClasses, dxLayoutControl, Vcl.ExtCtrls, Vcl.Buttons,uconexaoBancoCLiente,uDMPrincipal;
 
 type
   TFRMCadaStroCliente = class(TForm)
@@ -80,10 +80,11 @@ type
     procedure edtcidadeKeyPress(Sender: TObject; var Key: Char);
     procedure edtCPFKeyPress(Sender: TObject; var Key: Char);
     procedure edtCNPJKeyPress(Sender: TObject; var Key: Char);
+    procedure visualizar;
   private
     { Private declarations }
   public
-    { Public declarations }
+    id : Integer;
   end;
 
 var
@@ -96,6 +97,7 @@ implementation
 procedure TFRMCadaStroCliente.btn1Click(Sender: TObject);
 var
 clienteiinsert : TconexaoBancoCliente;
+
 begin
 clienteiinsert := TconexaoBancoCliente.Create;
 
@@ -112,6 +114,29 @@ if (edtNome.Text <>'' ) or
   (edttelefone2.Text<>'')or
   (edtemail.Text <>'')  then
   begin
+  if btn1.Caption = 'Salvar' then
+  begin
+       clienteiinsert.FNome := edtNome.Text;
+    clienteiinsert.FNomeFantasia:= edtnomeFantasia.Text;
+    clienteiinsert.FCPF:= edtCPF.Text;
+    clienteiinsert.FCNPJ:=edtCNPJ.Text;
+    clienteiinsert.Fpais:= edtpais.Text;
+    clienteiinsert.Festado:= edtestado.Text;
+    clienteiinsert.Fcidade:= edtcidade.Text;
+    clienteiinsert.Fbairro:= edtbairro.Text;
+    clienteiinsert.Frua:= edtrua.Text;
+    clienteiinsert.Fnumero:= edtNome.Text;
+    clienteiinsert.Fcep := edtcep.Text;
+    clienteiinsert.Ftelefone := edttelefone.Text;
+    clienteiinsert.Ftelefone2:= edttelefone2.Text;
+    clienteiinsert.Femail:= edtemail.Text;
+    clienteiinsert.Foperacao := False;
+   clienteiinsert.Conectar;
+   ShowMessage('Salvo com sucesso');
+  end;
+  if btn1.Caption = 'Editar' then
+  begin
+    clienteiinsert.Fid := id;
     clienteiinsert.FNome := edtNome.Text;
     clienteiinsert.FNomeFantasia:= edtnomeFantasia.Text;
     clienteiinsert.FCPF:= edtCPF.Text;
@@ -126,8 +151,11 @@ if (edtNome.Text <>'' ) or
     clienteiinsert.Ftelefone := edttelefone.Text;
     clienteiinsert.Ftelefone2:= edttelefone2.Text;
     clienteiinsert.Femail:= edtemail.Text;
+    clienteiinsert.Foperacao := True;
    clienteiinsert.Conectar;
    ShowMessage('Salvo com sucesso');
+  end;
+
 
   end
   else
@@ -229,6 +257,27 @@ if rgpessoa.ItemIndex = 0 then
     edtCPF.Enabled := False ;
     edtCNPJ.Enabled := False;
   end;
+
+end;
+
+procedure TFRMCadaStroCliente.visualizar;
+begin
+ id := DMPrincipal.fdqryBancoPrincipal.FieldByName('CLI_ID').Value;
+ edtNome.Text := DMPrincipal.fdqryBancoPrincipal.FieldByName('CLI_NOME').Value;
+  edtnomeFantasia.Text:= DMPrincipal.fdqryBancoPrincipal.FieldByName('CLI_NOMEFANTASIA').Value;
+  edtCPF.Text:=DMPrincipal.fdqryBancoPrincipal.FieldByName('CLI_CPF').Value;
+  edtCNPJ.Text:=DMPrincipal.fdqryBancoPrincipal.FieldByName('CLIE_CNPJ').Value;
+  edtpais.Text:=DMPrincipal.fdqryBancoPrincipal.FieldByName('CLI_PAIS').Value;
+  edtestado.Text:=DMPrincipal.fdqryBancoPrincipal.FieldByName('CLI_ESTADO').Value;
+  edtcidade.Text:=DMPrincipal.fdqryBancoPrincipal.FieldByName('CLI_CIDADE').Value;
+  edtbairro.Text:=DMPrincipal.fdqryBancoPrincipal.FieldByName('CLI_BAIRRO').Value;
+  edtrua.Text:=DMPrincipal.fdqryBancoPrincipal.FieldByName('CLI_RUA').Value;
+  edtnumero.Text:=DMPrincipal.fdqryBancoPrincipal.FieldByName('CLI_NUMERO').Value;
+  edtcep.Text:=DMPrincipal.fdqryBancoPrincipal.FieldByName('CLI_CEP').Value;
+  edttelefone.Text:=DMPrincipal.fdqryBancoPrincipal.FieldByName('CLI_TELEFONE').Value;
+  edttelefone2.Text:=DMPrincipal.fdqryBancoPrincipal.FieldByName('CLI_EMAIL').Value;
+  edtemail.Text:=DMPrincipal.fdqryBancoPrincipal.FieldByName('CLI_TELEFONE2').Value;
+  btn1.Caption := 'Editar';
 
 end;
 

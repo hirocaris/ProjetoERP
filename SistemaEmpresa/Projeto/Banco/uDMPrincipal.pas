@@ -35,6 +35,8 @@ type
     strngfldfdtbl1CLI_EMAIL: TStringField;
     strngfldfdtbl1CLI_TELEFONE2: TStringField;
     intgrfldClientemax: TIntegerField;
+    fdtblpesquisa: TFDTable;
+    strngfldfdtbl1Pesquisa: TStringField;
   private
     { Private declarations }
   public

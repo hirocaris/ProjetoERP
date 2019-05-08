@@ -44,8 +44,8 @@ object DMPrincipal: TDMPrincipal
     UpdateTransaction = fdtrnsctn1
     UpdateOptions.UpdateTableName = 'CLIENTE'
     TableName = 'CLIENTE'
-    Left = 224
-    Top = 24
+    Left = 248
+    Top = 32
     object intgrfldfdtbl1CLI_ID: TIntegerField
       FieldName = 'CLI_ID'
       Origin = 'CLI_ID'
@@ -134,5 +134,13 @@ object DMPrincipal: TDMPrincipal
       'Select * From cliente')
     Left = 40
     Top = 96
+  end
+  object fdtblpesquisa: TFDTable
+    Connection = conFBConecao
+    Left = 312
+    Top = 32
+    object strngfldfdtbl1Pesquisa: TStringField
+      FieldName = 'Pesquisa'
+    end
   end
 end

@@ -24,13 +24,11 @@ uses
   dxLayoutContainer, dxLayoutControl, cxStyles, cxCustomData, cxFilter, cxData,
   cxDataStorage, cxEdit, cxNavigator, Data.DB, cxDBData, cxGridLevel,
   cxGridCustomView, cxGridCustomTableView, cxGridTableView, cxGridDBTableView,
-  cxGrid,uDMPrincipal,uconexaoBancoCLiente,uCadastroCliente;
+  cxGrid,uDMPrincipal,uconexaoBancoCLiente,uCadastroCliente,
+  dxLayoutControlAdapters, Vcl.StdCtrls, Vcl.ExtCtrls;
 
 type
   TFRMCliente = class(TForm)
-    mm1: TMainMenu;
-    Clie1: TMenuItem;
-    Cadastrar1: TMenuItem;
     cxgrdespesaGrid1DBTableView1: TcxGridDBTableView;
     cxgrddespesaGrid1Level1: TcxGridLevel;
     despesa1: TcxGrid;
@@ -51,14 +49,31 @@ type
     cxgrdbclmnGrid1DBTableView1Column13: TcxGridDBColumn;
     cxgrdbclmnGrid1DBTableView1Column14: TcxGridDBColumn;
     cxgrdbclmnGrid1DBTableView1Column15: TcxGridDBColumn;
+    edtpesquisa: TEdit;
+    dxlytm1: TdxLayoutItem;
+    btnpesquisa: TButton;
+    dxlytm2: TdxLayoutItem;
+    rgpesquisa: TRadioGroup;
+    dxlytm3: TdxLayoutItem;
+    dxlybotao1: TdxLayoutGroup;
+    mm1: TMainMenu;
+    Cliente1: TMenuItem;
+    Cadastrar1: TMenuItem;
+    N1: TMenuItem;
     procedure FormCreate(Sender: TObject);
     procedure Cadastrar1Click(Sender: TObject);
     procedure Conexao;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure btnpesquisaClick(Sender: TObject);
+    procedure edtpesquisaKeyPress(Sender: TObject; var Key: Char);
+    procedure conexaocliente;
+
   private
     { Private declarations }
   public
-   ConexaoBancoPrincipal : TDMPrincipal
+   ConexaoBancoPrincipal : TDMPrincipal;
+   CadastroCliente :TFRMCadaStroCliente;
+
   end;
 
 var
@@ -68,19 +83,48 @@ implementation
 
 {$R *.dfm}
 
-procedure TFRMCliente.Cadastrar1Click(Sender: TObject);
+procedure TFRMCliente.btnpesquisaClick(Sender: TObject);
 var
-CadastroCliente :TFRMCadaStroCliente;
+clientepesquisa :TconexaoBancoCliente;
 begin
-CadastroCliente := TFRMCadaStroCliente.Create(Self);
+clientepesquisa := TconexaoBancoCliente.Create;
+//if rgpesquisa.ItemIndex <>-1 then
+//ShowMessage(clientepesquisa.Pesquisar(edtpesquisa.Text, rgpesquisa.ItemIndex))
+//else
+// MessageDlg('Selecione a forma de pesquisa ',mtError, [mbOK], 0);
+
+  conexaocliente;
+
+ clientepesquisa.Pesquisar(edtpesquisa.Text, rgpesquisa.ItemIndex);
+ CadastroCliente.visualizar;
+ CadastroCliente.ShowModal
+
+end;
+
+
+procedure TFRMCliente.Cadastrar1Click(Sender: TObject);
+begin
+conexaocliente;
 CadastroCliente.ShowModal;
 Conexao;
-
+CadastroCliente.Free
 end;
 
 procedure TFRMCliente.Conexao;
 begin
 ConexaoBancoPrincipal := TDMPrincipal.Create(Self);
+end;
+
+procedure TFRMCliente.conexaocliente;
+begin
+ CadastroCliente := TFRMCadaStroCliente.Create(Self);
+
+end;
+
+procedure TFRMCliente.edtpesquisaKeyPress(Sender: TObject; var Key: Char);
+begin
+ if(key = #13)then
+ btnpesquisa.Click;
 end;
 
 procedure TFRMCliente.FormClose(Sender: TObject; var Action: TCloseAction);
